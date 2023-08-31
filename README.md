@@ -1,5 +1,5 @@
 # found-foliage-project-server
-# Project Name
+# Found Foliage
 
 <br>
 
@@ -16,14 +16,14 @@
 
 - **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault
 - **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
-- **homepage** - As a user I want to be able to access the homepage to log in and sign up.
-- **about** - As a user I want to be able to access the about page and check the developer team. 
-- **sign up** - As a user I want to sign up on the web page so that I can upload a photo of the plant I want to identify.
-- **login** - As a user I want to be able to log in on the web page so that I can get back to my account.
+- **Homepage** - As a user I want to be able to access the homepage to log in and sign up.
+- **About** - As a user I want to be able to access the about page and check the developer team. 
+- **Sign up** - As a user I want to sign up on the web page so that I can upload a photo of the plant I want to identify.
+- **Login** - As a user I want to be able to log in on the web page so that I can get back to my account.
 - **Logout** - As a user I want to be able to log out from the web page so that I can make sure no one will access my account
 - **AddPlant** - As a user I want to add a photo to identify the plant.
 - **Plant Details** - As a user I want to be able to see the details of the plant.
-- **profile page/ garden** - As a user I want to see my profile and see all the plants I've uploaded and I want to be able name my garden, give it a description, change my garden background and change my profile pic.               
+- **Profile page / youe garden** - As a user I want to see my profile and see all the plants I've uploaded and I want to be able name my garden, give it a description, change my garden background and change my profile pic.               
                 
                 - ** Optional **
 - **result** - As a user I want to be able to search the plants plants.
