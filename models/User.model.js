@@ -3,26 +3,34 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const userSchema = new Schema(
   {
+    username: {
+      type: String,
+      required: false,
+      unique: true,
+      trim: true,
+    },
     email: {
       type: String,
-      required: [true, "Email is required."],
+      required: true,
       unique: true,
-      lowercase: true,
       trim: true,
+      lowercase: true,
     },
     password: {
       type: String,
-      required: [true, "Password is required."],
+      required: true,
     },
-    name: {
+ 
+    profilePicUrl: {
       type: String,
-      required: [true, "Name is required."],
+      default: "https://res.cloudinary.com/ghostly/image/upload/v1692265256/ghostly-tales/Sem-T%C3%ADtulo-1_gub7tk.gif"
     },
-  },
-  {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
-    timestamps: true,
+    garden:{
+      type: Schema.Types.ObjectId,
+      ref: "Garden"
+    }
   }
+  
 );
 
 const User = model("User", userSchema);
