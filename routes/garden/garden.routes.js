@@ -6,6 +6,8 @@ const upload = multer();
 
 const Plant = require ('../../models/Plant.model')
 const Garden = require ('../../models/Garden.model')
+const {isAuthenticated} = require ('../../middleware/jwt.middleware')
+
 
 
 // ROUTES
@@ -13,11 +15,13 @@ const Garden = require ('../../models/Garden.model')
 // Display all plants in garden
 
 // GET
-router.get('/', async (req, res) => {
+router.get('/', isAuthenticated, async (req, res) => {
+    const userId = req.payload._id
 
 
    try{
-    let gardenPlants = await Garden.findById().populate('plants');
+    let gardenPlants = await Garden.findOne({user:userId}).populate('plants');
+    console.log(gardenPlants);
     res.json(gardenPlants);
 
    }

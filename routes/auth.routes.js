@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
+const Garden = require("../models/Garden.model")
 
 // Require necessary (isAuthenticated) middleware in order to control access to specific routes
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
@@ -59,6 +60,11 @@ router.post("/signup", (req, res, next) => {
       // Create the new user in the database
       // We return a pending promise, which allows us to chain another `then`
       return User.create({ email, password: hashedPassword, username });
+    })
+    .then((createdUser) => {
+      return Garden.create({ user: createdUser._id }).then((createdGarden) => {
+        return createdUser;
+      });
     })
     .then((createdUser) => {
       // Deconstruct the newly created user object to omit the password

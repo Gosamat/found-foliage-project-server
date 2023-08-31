@@ -21,11 +21,6 @@ app.use("/api", indexRoutes);
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
-const myGardenRoutes = require ("./routes/user/my-garden.routes")
-app.use("/mygarden", myGardenRoutes)
-
-const plantsListRoutes = require ("./routes/plants/plants-list.routes")
-app.use("/list", plantsListRoutes)
 const gardenRoutes = require ("./routes/garden/garden.routes")
 app.use("/garden", gardenRoutes)
 

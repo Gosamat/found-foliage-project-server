@@ -6,6 +6,8 @@ const upload = multer();
 
 const Plant = require ('../../models/Plant.model')
 const Garden = require ('../../models/Garden.model')
+const User = require ('../../models/User.model')
+const {isAuthenticated} = require ('../../middleware/jwt.middleware')
 
 
 
@@ -14,12 +16,20 @@ const Garden = require ('../../models/Garden.model')
 // Add new plant via form
 
 // POST
-router.post('/add', async (req, res) => {
+router.post('/add', isAuthenticated, async (req, res) => {
 
-    const {commonName, scientificName, cycle, sunlight, watering, notes, imgUrl, garden} = req.body;
+    const {commonName, scientificName, cycle, sunlight, watering, imgUrl} = req.body;
+    const userId = req.payload._id
 
     try{
-        let newPlant = await Plant.create({commonName, scientificName, cycle, sunlight, watering, notes, imgUrl, garden});
+        const userGarden = await Garden.findOne({ user: userId });
+        if (!userGarden) {
+            return res.status(404).json({ message: "User's garden not found." });
+          }
+        console.log(userGarden);
+        let newPlant = await Plant.create({commonName, scientificName, cycle, sunlight, watering, imgUrl});
+        userGarden.plants.push(newPlant._id); 
+        await userGarden.save();
         res.json(newPlant)
     }
     catch(err){
@@ -42,8 +52,5 @@ router.get('/', async (req, res) => {
     }
 })
 
-// Create a new plant based on form data
-
-// POST 
 
 module.exports = router;
