@@ -1,34 +1,67 @@
-# found-foliage-project-server
-# Found Foliage
+# 🌱 Found Foliage 
 
-<br>
+# About The Project
+With our user-friendly website, identifying plants has never been easier. Just upload a photo of a plant, and our "smart" AI will quickly tell you its name and characteristics. 
+
+Create an account to unlock the Garden Companion feature. Each plant you identify gets saved in your personal garden album. You can even add notes, like watering schedules or care tips, to keep your plants healthy and thriving.
+
+Explore the world of plants with "PlantSnap Garden Companion" – your go-to tool for all things green!
+
+In short:
+* Upload a plant and it'll tell you the name and some basic info. 🌼
+* You can create an account to make your own garden 🌼
+* You can add notes to each plant. 🌼
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#Server-Routes">Server Routes</a></li>
+        <li><a href="#Models">Models</a></li>
+        <li><a href="#API">Api</a></li>
+        <li><a href="#Packages">Packages</a></li>
+        <li><a href="#Other-Info">Other Info</a></li>
+      </ul>
+    </li> 
+  <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+<be>
+
+# Built With
 
 
+# User Stories
 
-## Description
+**404 Page Display** - In the event that I navigate to a non-existent page, I desire the presence of a well-crafted 404 page. This will help me understand that the issue lies with my actions.
 
- Capture a photo, upload it, and our AI-driven platform will unravel the plant's identity within seconds. Your portal to unlocking the secrets of the plant realm.
+**500 Error Page** - When technical glitches occur due to the super team's work, I wish to encounter an aesthetically pleasing error page. This will help me recognize that the responsibility does not rest with my actions.
 
+**Homepage Access** - My objective is to easily reach the homepage for the purpose of logging in and signing up.
 
-<br>
+**About Page Access** - I seek the capability to effortlessly access the About page to review information about the developer team.
 
-## User Stories
+**Sign Up Functionality** - I have a desire to register on the website, facilitating the upload of photos of plants I intend to identify.
 
-- **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault
-- **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
-- **Homepage** - As a user I want to be able to access the homepage to log in and sign up.
-- **About** - As a user I want to be able to access the about page and check the developer team. 
-- **Sign up** - As a user I want to sign up on the web page so that I can upload a photo of the plant I want to identify.
-- **Login** - As a user I want to be able to log in on the web page so that I can get back to my account.
-- **Logout** - As a user I want to be able to log out from the web page so that I can make sure no one will access my account
-- **AddPlant** - As a user I want to add a photo to identify the plant.
-- **Plant Details** - As a user I want to be able to see the details of the plant.
-- **Profile page / youe garden** - As a user I want to see my profile and see all the plants I've uploaded and I want to be able name my garden, give it a description, change my garden background and change my profile pic.               
-                
+**Login Process** - I aim to execute a seamless login process on the website to regain access to my account.
+
+**Logout Feature** - I aspire to possess the ability to log out from the website, ensuring the security of my account from unauthorized access.
+
+**Plant Addition** - I am inclined to upload a photo of a plant for identification purposes.
+
+**Plant Details Viewing** - It is my wish to have the capacity to view comprehensive information about identified plants.
+
+**Profile Page / Your Garden** - I hold an interest in viewing my profile, encompassing all uploaded plants. Moreover, I desire the option to name my garden, provide a description for it, modify the garden's background, and alter my profile image.   
                 - ** Optional **
-- **result** - As a user I want to be able to search the plants plants.
-- **garden category**- as a user I want to have the ability to divide my garden into categories e.g front-yard and assign especific plants to it.
+**Search Functionality** - I wish to possess the ability to conduct searches for specific plants.
 
+**Garden Categorization** - I seek the functionality to categorize my garden into sections such as "front-yard," enabling the assignment of particular plants to these defined categories.
 
 
 
@@ -46,59 +79,25 @@
 | `GET`      | `/login`                           | Renders `login` form view.                                   |                                                          |
 | `POST`     | `/login`                           | Sends Login form data to the server.                         | { email, password }                                      |
 | `GET`      | `/signup`                          | Renders `signup` form view.                                  |                                                          |
-| `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB. | {  email, password  }                                    |
-| `GET`      | `/private/edit-profile`            | Private route. Renders `edit-profile` form view.             |                                                          |
-| `PUT`      | `/private/edit-profile`            | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
-                                |
-        |
-| `GET`      | `/restaurants`                     | Renders `restaurant-list` view.                              |                                                          |
-| `GET`      | `/restaurants/details/:id`         | Renders `restaurant-details` view for the particular restaurant. |                                                          |
-
-
-
-
-
-
-
+| `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB. | {  email, password, username  }                                    |
+| `GET`      | `/private/edit/garden`             | Private route. Renders `edit-garden` form view.             |                                                          |
+| `PUT`      | `/private/edit/garden`             | Private route. Sends garden info to server and updates user in DB. | { garden title, userProfilePic } |
+| `GET`      | `/plants`                          |  Renders `plant-list` view.            |                                                            |
+| `GET`      | `/plants/details/:id`              | Renders `plant-details` view for the particular restaurant. |    
+| `GET`      | `/plant/add`                       | Renders `addPlant` view.                              |                                                          |
+| `GET`      | `/plants/details/:id`              | Renders `plant-details` view for the particular restaurant. |
+| `GET`      | `/about`                           | Renders `about` view.                              |  |
+                               
 ## Models
 
-User model
-
-```javascript
-{
-  username: String,
-  email: String,
-  password: String,
- 
-}
-
-```
-
-
-
-Garden model
-
-```javascript
-{
-  TBA
-}
-
-```
-
-Plants model - Basic Info
-
-```javascript
-{
-  name: String,
-  email: String,
-}
-
-
-
+* User model
+* Garden model
+* Plants model 
 <br>
 
 ## API's
 PLANTS API
+PlantNet API
 
 <br>
 
@@ -110,7 +109,7 @@ PLANTS API
 <br>
 
 
-
+## Other Info:
 ## Backlog
 
 [See the Trello board.](https://trello.com/b/Ni3giVKf/ironhackproject)
@@ -149,60 +148,6 @@ The url to your presentation slides
 FirstName LastName - [`<github-username>`](https://github.com/person1-username) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/person1-username)
 
 FirstName LastName - [`<github-username>`](https://github.com/person2-username) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/person2-username)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # React + Vite
 
