@@ -71,7 +71,7 @@ router.get('/:plantId', async (req, res) => {
 // Delete specific plant in garden
 
 //  DELETE
- router.delete('/:plantId/edit', async (req, res) => {
+ router.delete('/:plantId/delete', async (req, res) => {
     const{plantId} = req.params;
 
     try{
