@@ -6,6 +6,7 @@ const upload = multer();
 
 const Plant = require ('../../models/Plant.model')
 const Garden = require ('../../models/Garden.model')
+const Section = require ('../../models/Section.model')
 const {isAuthenticated} = require ('../../middleware/jwt.middleware')
 
 
@@ -71,7 +72,7 @@ router.get('/:plantId', async (req, res) => {
 // Delete specific plant in garden
 
 //  DELETE
- router.delete('/:plantId/edit', async (req, res) => {
+ router.delete('/:plantId/delete', async (req, res) => {
     const{plantId} = req.params;
 
     try{
@@ -84,5 +85,22 @@ router.get('/:plantId', async (req, res) => {
     }
     
  })
+
+//  Add new section to Garden
+router.post('/section/create', isAuthenticated, async (req, res) => {
+    const userId = req.payload._id
+    const {title, plants} = req.body;
+
+    try{
+    let findGarden = await Garden.findOne({user:userId});
+    let newSection = await Section.create({title, plants, garden:findGarden._id});
+    res.json(newSection);
+
+    }
+    catch(error){
+     res.json("error while creating new section in garden: ", error)
+    }
+
+});
 
  module.exports = router;

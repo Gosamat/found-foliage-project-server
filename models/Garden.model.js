@@ -18,11 +18,12 @@ const gardenSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
-
-    }
-    
-  );
+  },
+  sections: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Section'
+  }]
+    });
   
   module.exports = model ('Garden', gardenSchema);
   
