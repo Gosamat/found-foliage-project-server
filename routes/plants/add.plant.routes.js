@@ -21,13 +21,14 @@ router.post('/add', isAuthenticated, async (req, res) => {
     const {commonName, scientificName, cycle, sunlight, watering, imgUrl} = req.body;
     const userId = req.payload._id
 
+
     try{
         const userGarden = await Garden.findOne({ user: userId });
         if (!userGarden) {
             return res.status(404).json({ message: "User's garden not found." });
           }
-        console.log(userGarden);
         let newPlant = await Plant.create({commonName, scientificName, cycle, sunlight, watering, imgUrl});
+        console.log(newPlant)
         userGarden.plants.push(newPlant._id); 
         await userGarden.save();
         res.json(newPlant)

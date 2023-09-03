@@ -77,6 +77,8 @@ router.get('/:plantId', async (req, res) => {
 
     try{
         await Plant.findByIdAndDelete(plantId);
+        let foundUser = await User.findOne({plants: plantId});
+        foundUser.plants.pull(plantId);
         res.json({message: 'plant deleted successfully'});
  
     }
