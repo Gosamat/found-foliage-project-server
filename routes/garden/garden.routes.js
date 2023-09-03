@@ -76,9 +76,9 @@ router.get('/:plantId', async (req, res) => {
     const{plantId} = req.params;
 
     try{
-        await Plant.findByIdAndDelete(plantId);
-        let foundUser = await User.findOne({plants: plantId});
-        foundUser.plants.pull(plantId);
+        let findGarden = await Garden.findOne({plants:plantId});
+        findGarden.plants.pull(plantId);
+        await Plant.findByIdAndDelete(plantId);    
         res.json({message: 'plant deleted successfully'});
  
     }
