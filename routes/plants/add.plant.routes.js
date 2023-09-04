@@ -28,8 +28,9 @@ router.post('/add', isAuthenticated, async (req, res) => {
             return res.status(404).json({ message: "User's garden not found." });
           }
         let newPlant = await Plant.create({commonName, scientificName, cycle, sunlight, watering, imgUrl});
-        console.log(newPlant)
         userGarden.plants.push(newPlant._id); 
+        console.log("created new plant and pushed it to user ID :", newPlant)
+
         await userGarden.save();
         res.json(newPlant)
     }

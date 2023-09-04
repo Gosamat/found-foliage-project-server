@@ -18,8 +18,8 @@ router.get("/", isAuthenticated, async (req, res) => {
 
   try {
     let gardenPlants = await Garden.findOne({ user: userId }).populate(
-      "plants"
-    );
+      "plants");
+
     console.log(gardenPlants);
     res.json(gardenPlants);
   } catch (error) {
