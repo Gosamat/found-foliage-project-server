@@ -1,31 +1,62 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const upload = multer();
 
 const Plant = require("../../models/Plant.model");
 const Garden = require("../../models/Garden.model");
 const Section = require("../../models/Section.model");
+const User = require("../../models/User.model");
 const { isAuthenticated } = require("../../middleware/jwt.middleware");
 
 // ROUTES
 
-// Display all plants in garden
+// Display user's garden
 
 // GET
 router.get("/", isAuthenticated, async (req, res) => {
   const userId = req.payload._id;
+  console.log("this is the user ID: ", userId);
 
   try {
+
     let gardenPlants = await Garden.findOne({ user: userId }).populate(
       "plants");
+      console.log(gardenPlants);
 
-    console.log(gardenPlants);
-    res.json(gardenPlants);
+    let currentUser = await User.findById(userId);
+    console.log(currentUser);
+
+    res.json({gardenPlants, currentUser});
   } catch (error) {
-    res.json("error while fetching plants in garden: ", error);
-  }
+    res.status(500).json({ error: 'error while fetching plants in garden' });
+
+}
 });
+
+// Delete/Reset User's Garden
+
+// DELETE
+
+router.delete("/delete", isAuthenticated, async (req, res) => {
+    const userId = req.payload._id;
+  
+    try {
+      let findGarden = await Garden.findOne({ user: userId });
+  
+      // Find and delete all associated plants
+      await Plant.deleteMany({ _id: { $in: findGarden.plants } });
+  
+      // Delete the garden object
+      await Garden.findByIdAndDelete({ _id: findGarden._id });
+  
+      // Create a new garden
+      let newGarden = await Garden.create({ user: userId });
+  
+      res.json({ message: "Garden and associated plants deleted successfully and new one created" });
+    } catch (error) {
+      res.status(500).json({ error: "Error while deleting garden and associated plants: " + error.message });
+    }
+  });
 
 // display info about specific plant in garden
 
@@ -93,5 +124,7 @@ router.post("/section/create", isAuthenticated, async (req, res) => {
     res.json("error while creating new section in garden: ", error);
   }
 });
+
+
 
 module.exports = router;

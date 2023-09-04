@@ -23,7 +23,7 @@ const userSchema = new Schema(
  
     profilePicUrl: {
       type: String,
-      default: "https://res.cloudinary.com/ghostly/image/upload/v1692265256/ghostly-tales/Sem-T%C3%ADtulo-1_gub7tk.gif"
+      default: "https://res.cloudinary.com/foundfoliage/image/upload/v1693838751/qtelec84d4garo8tkhlw.png"
     }
   }
   
