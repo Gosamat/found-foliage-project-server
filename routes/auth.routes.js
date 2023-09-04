@@ -135,11 +135,11 @@ router.get("/verify", isAuthenticated, (req, res, next) => {
 });
 
 // Delete Profile
-router.delete("/profile/:userId", async (req, res, next) => {
-const {userId} = req.params;
+router.delete("/delete", isAuthenticated ,async (req, res, next) => {
+const {userId} = req.payload._id;
 
 try{
-  await Project.findByIdAndDelete(userId);
+  await User.findByIdAndDelete(userId);
   res.json({message: ' User Deleted'})
 }
 catch (error){
