@@ -147,22 +147,20 @@ catch (error){
 }
 })
 
-// update profile
-router.put("/profile/:userId", async (req, res) => {
-  const { userId } = req.params;
-  const { newUsername, newProfilePicture } = req.body;
+// update User
+router.put("/update", isAuthenticated, async (req, res) => {
+  const userId = req.payload._id;
+  const {profilePicUrl} = req.body;
+  console.log(userId)
 
   try {
+    const foundUser = await User.findById(userId);
+    console.log(foundUser)
       const updatedUser = await User.findByIdAndUpdate(
           userId,
-          { username: newUsername, profilePicture: newProfilePicture },
+          {profilePicUrl},
           { new: true }
       );
-
-      if (!updatedUser) {
-          return res.status(404).json({ message: 'User not found' });
-      }
-
       res.json(updatedUser);
   } catch (error) {
       res.status(500).json({ error: 'An error occurred' });
