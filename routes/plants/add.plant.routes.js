@@ -1,58 +1,75 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
-const multer = require('multer');
+const multer = require("multer");
 const upload = multer();
 
-
-const Plant = require ('../../models/Plant.model')
-const Garden = require ('../../models/Garden.model')
-const User = require ('../../models/User.model')
-const {isAuthenticated} = require ('../../middleware/jwt.middleware')
-
-
+const Plant = require("../../models/Plant.model");
+const Garden = require("../../models/Garden.model");
+const User = require("../../models/User.model");
+const { isAuthenticated } = require("../../middleware/jwt.middleware");
 
 // ROUTES
 
 // Add new plant via form
 
 // POST
-router.post('/add', isAuthenticated, async (req, res) => {
+router.post("/add", isAuthenticated, async (req, res) => {
+  const {
+    commonName,
+    scientificName,
+    cycle,
+    sunlight,
+    watering,
+    imgUrl,
+    edible,
+    maintenance,
+    poisonous,
+    indoor,
+    description,
+    medicinal,
+    flowering,
+  } = req.body;
+  const userId = req.payload._id;
 
-    const {commonName, scientificName, cycle, sunlight, watering, imgUrl} = req.body;
-    const userId = req.payload._id
-
-
-    try{
-        const userGarden = await Garden.findOne({ user: userId });
-        if (!userGarden) {
-            return res.status(404).json({ message: "User's garden not found." });
-          }
-        let newPlant = await Plant.create({commonName, scientificName, cycle, sunlight, watering, imgUrl});
-        userGarden.plants.push(newPlant._id); 
-        console.log("created new plant and pushed it to user ID :", newPlant)
-
-        await userGarden.save();
-        res.json(newPlant)
+  try {
+    const userGarden = await Garden.findOne({ user: userId });
+    if (!userGarden) {
+      return res.status(404).json({ message: "User's garden not found." });
     }
-    catch(err){
-        res.json(err)
+    let newPlant = await Plant.create({
+      commonName,
+      scientificName,
+      cycle,
+      sunlight,
+      watering,
+      imgUrl,
+      edible,
+      maintenance,
+      poisonous,
+      indoor,
+      description,
+      medicinal,
+      flowering,
+    });
+    userGarden.plants.push(newPlant._id);
+    console.log("created new plant and pushed it to user ID :", newPlant);
 
-    }
-})
+    await userGarden.save();
+    res.json(newPlant);
+  } catch (err) {
+    res.json(err);
+  }
+});
 
 // Display list of added plants
 // GET
-router.get('/', async (req, res) => {
-
-    try{
-        const plantList = await Plant.find()
-        res.json(plantList)
-    }
-    catch(err){
-        res.json(err)
-
-    }
-})
-
+router.get("/", async (req, res) => {
+  try {
+    const plantList = await Plant.find();
+    res.json(plantList);
+  } catch (err) {
+    res.json(err);
+  }
+});
 
 module.exports = router;
