@@ -39,6 +39,9 @@ const PlantSchema = new Schema(
       flowering:[{
         type: String
       }],
+      care: {
+        type: String,
+      },
       notes: {
         type: String,
       },
