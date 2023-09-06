@@ -50,6 +50,7 @@ router.post("/add", isAuthenticated, async (req, res) => {
       description,
       medicinal,
       flowering,
+      care
     });
     userGarden.plants.push(newPlant._id);
     console.log("created new plant and pushed it to user ID :", newPlant);
