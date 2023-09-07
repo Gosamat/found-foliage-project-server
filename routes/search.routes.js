@@ -11,12 +11,13 @@ router.get('/', async(req,res)=>{
 
     try{
     const {query}= req.query
+    console.log(query)
     let searchPlants = await Plant.find({ $or: [
         {commonName: { $regex: new RegExp(query, 'i') }},
         {scientificName: {$regex: new RegExp(query, 'i')}}
      ] 
     });
-
+    console.log(searchPlants)
     res.json(searchPlants);
     }
     catch(error){
