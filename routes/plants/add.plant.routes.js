@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
-const upload = multer();
+
 
 const Plant = require("../../models/Plant.model");
 const Garden = require("../../models/Garden.model");
