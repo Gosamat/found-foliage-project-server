@@ -8,22 +8,22 @@ const Plant = require("../models/Plant.model");
 
 // Routes
 router.get('/', async(req,res)=>{
-
-    try{
-    const {query}= req.query
-    console.log(query)
-    let searchPlants = await Plant.find({ $or: [
-        {commonName: { $regex: new RegExp(query, 'i') }},
-        {scientificName: {$regex: new RegExp(query, 'i')}}
-     ] 
-    });
-    console.log(searchPlants)
-    res.json(searchPlants);
+    const { q } = req.query;
+  
+    try {
+      const searchResults = await Plant.find({
+        $or: [
+          { commonName: { $regex: new RegExp(q, 'i') } },
+          { scientificName: { $regex: new RegExp(q, 'i') } }
+        ]
+      });
+  
+      res.json({ data: searchResults });
+    } catch (error) {
+      console.error('Error searching for plants:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
-    catch(error){
-        res.json(error);
-    }
-})
+  })
 
 
 module.exports = router
