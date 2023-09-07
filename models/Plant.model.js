@@ -24,7 +24,10 @@ const PlantSchema = new Schema(
       maintenance: {
         type: String,
       },
-      poisonous: {
+      humanPoisonous: {
+        type: Boolean,
+      },
+      petPoisonous: {
         type: Boolean,
       },
       indoor:{
