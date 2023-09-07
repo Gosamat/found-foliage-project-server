@@ -18,7 +18,7 @@ router.get('/', async(req,res)=>{
         ]
       });
   
-      res.json({ data: searchResults });
+      res.json(searchResults);
     } catch (error) {
       console.error('Error searching for plants:', error);
       res.status(500).json({ error: 'Internal Server Error' });
