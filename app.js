@@ -27,7 +27,7 @@ app.use("/garden", gardenRoutes)
 const plantRoutes = require ("./routes/plants/add.plant.routes")
 app.use("/plant", plantRoutes)
 
-const searchRoutes = require ("./routes/plants/search.plant.routes")
+const searchRoutes = require ("./routes/plants/search.routes")
 app.use("/search", searchRoutes)
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
