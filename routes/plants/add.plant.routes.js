@@ -27,6 +27,7 @@ router.post("/add", isAuthenticated, async (req, res) => {
     description,
     medicinal,
     flowering,
+    care
   } = req.body;
   const userId = req.payload._id;
 
