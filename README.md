@@ -39,11 +39,11 @@ In short:
 
 # User Stories
 
-**404 Page Display** - In the event that I navigate to a non-existent page, I desire the presence of a well-crafted 404 page. This will help me understand that the issue lies with my actions.
+**404 Page Display** - If I navigate to a non-existent page, I desire the presence of a well-crafted 404 page. This will help me understand that the issue lies with my actions.
 
 **500 Error Page** - When technical glitches occur due to the super team's work, I wish to encounter an aesthetically pleasing error page. This will help me recognize that the responsibility does not rest with my actions.
 
-**Homepage Access** - My objective is to easily reach the homepage for the purpose of logging in and signing up.
+**Homepage Access** - My objective is to easily reach the homepage to log in and sign up.
 
 **About Page Access** - I seek the capability to effortlessly access the About page to review information about the developer team.
 
@@ -51,17 +51,17 @@ In short:
 
 **Login Process** - I aim to execute a seamless login process on the website to regain access to my account.
 
-**Logout Feature** - I aspire to possess the ability to log out from the website, ensuring the security of my account from unauthorized access.
+**Logout Feature** - I aspire to be able to log out from the website, ensuring the security of my account from unauthorized access.
 
 **Plant Addition** - I am inclined to upload a photo of a plant for identification purposes.
 
-**Plant Details Viewing** - It is my wish to have the capacity to view comprehensive information about identified plants.
+**Plant Details Viewing** - I wish to have the capacity to view comprehensive information about identified plants.
 
-**Profile Page / Your Garden** - I hold an interest in viewing my profile, encompassing all uploaded plants. Moreover, I desire the option to name my garden, provide a description for it, modify the garden's background, and alter my profile image.   
+**Profile Page / Your Garden** - I hold an interest in viewing my profile, encompassing all uploaded plants. Moreover, I want to name my garden, describe it, modify the garden's background, and alter my profile image.   
                 - ** Optional **
 **Search Functionality** - I wish to possess the ability to conduct searches for specific plants.
 
-**Garden Categorization** - I seek the functionality to categorize my garden into sections such as "front-yard," enabling the assignment of particular plants to these defined categories.
+**Garden Categorization** - I seek the functionality to categorize my garden into sections such as "front yard," enabling the assignment of particular plants to these defined categories.
 
 
 
@@ -79,9 +79,9 @@ In short:
 | `GET`      | `/login`                           | Renders `login` form view.                                   |                                                          |
 | `POST`     | `/login`                           | Sends Login form data to the server.                         | { email, password }                                      |
 | `GET`      | `/signup`                          | Renders `signup` form view.                                  |                                                          |
-| `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB. | {  email, password, username  }                                    |
+| `POST`     | `/signup`                          | Sends Sign Up info to the server and creates a user in the DB. | {  email, password, username  }                                    |
 | `GET`      | `/private/edit/garden`             | Private route. Renders `edit-garden` form view.             |                                                          |
-| `PUT`      | `/private/edit/garden`             | Private route. Sends garden info to server and updates user in DB. | { garden title, userProfilePic } |
+| `PUT`      | `/private/edit/garden`             | Private route. Sends garden info to the server and updates the user in DB. | { garden title, userProfilePic } |
 | `GET`      | `/plants`                          |  Renders `plant-list` view.            |                                                            |
 | `GET`      | `/plants/details/:id`              | Renders `plant-details` view for the particular restaurant. |    
 | `GET`      | `/plant/add`                       | Renders `addPlant` view.                              |                                                          |
